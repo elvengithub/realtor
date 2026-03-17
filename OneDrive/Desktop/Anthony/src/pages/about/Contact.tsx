@@ -4,10 +4,10 @@ import LeadCaptureForm from '../../components/LeadCaptureForm';
 const Contact = () => {
   return (
     <div className="contact-page">
-      <section className="section bg-light" style={{ paddingTop: '10rem' }}>
+      <section className="section bg-alt" style={{ paddingTop: '10rem' }}>
         <div className="container text-center">
           <span className="subtitle">Get in Touch</span>
-          <h1>Let’s Build Your <br />Future Together</h1>
+          <h1 style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-1px' }}>Let’s Build Your <br />Future Together</h1>
           <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem' }}>
             Whether you have a question about coaching or want to book Anthony for a speaking engagement, our team is ready to assist.
           </p>
