@@ -1,6 +1,6 @@
 import { useTheme } from '../../context/ThemeContext';
-import anthonyDarkImg from '../../assets/tondark.jpg';
-import anthonyLightImg from '../../assets/ton.jpg';
+import anthonyDarkImg from '../../assets/tondark1.jpg';
+import anthonyLightImg from '../../assets/ton1.jpg';
 import { Award, Target, Globe, BookOpen } from 'lucide-react';
 
 const Biography = () => {
@@ -8,18 +8,18 @@ const Biography = () => {
 
   return (
     <div className="biography-page">
-      {/* Hero Header */}
-      <section className="section bg-light" style={{ paddingTop: '10rem' }}>
+      {/* Executive Narrative Hero */}
+      <section className="section" style={{ paddingTop: '10rem', background: 'var(--bg-section)', borderBottom: '1px solid var(--brand-gold)' }}>
         <div className="container">
           <div className="grid-2" style={{ alignItems: 'center', gap: '5rem' }}>
             <div className="reveal active">
-              <span className="subtitle">Executive Leadership</span>
-              <h1 style={{ marginBottom: '2rem' }}>Anthony Gerard <br />Orais Leuterio</h1>
-              <p style={{ fontSize: '1.25rem', color: 'var(--text-main)', fontWeight: 500, lineHeight: 1.8 }}>
-                The Visionary Architect of the Filipino Real Estate Modernization.
+              <div className="roi-badge mb-4">2024 International Realtor of the Year</div>
+              <h1 style={{ marginBottom: '2rem', fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', color: 'var(--text-heading)', letterSpacing: '2px' }}>The Narrative of <br /><span style={{ color: 'var(--brand-gold)' }}>Global Dominance</span></h1>
+              <p className="lead" style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '2.5rem', fontWeight: 500 }}>
+                Anthony Leuterio is the first Filipino to be named International Realtor of the Year by the National Association of Realtors (NAR).
               </p>
-              <p className="mb-4">
-                Anthony "Tonton" Leuterio is a globally recognized entrepreneur, recognized as the <strong>2024 International Realtor of the Year</strong> by the National Association of Realtors (NAR). As the founder of Filipino Homes, he has spent over two decades professionalizing the industry and empowering thousands of agents to achieve world-class excellence.
+              <p className="mb-4" style={{ fontSize: '1.05rem', opacity: 0.8, lineHeight: 1.8, color: 'var(--text-main)' }}>
+                As the founder of Filipino Homes—the largest real estate network in the Philippines—Anthony has built an ecosystem of over 14,000 agents and 100+ offices. With more than 500 individual awards, he is the undisputed authority in professionalizing the real estate industry at scale.
               </p>
             </div>
             <div className="reveal active">
@@ -31,6 +31,7 @@ const Biography = () => {
                     width: '100%', 
                     aspectRatio: '4 / 5', 
                     objectFit: 'cover', 
+                    objectPosition: 'center 10%', /* Focuses on face, shifted up */
                     borderRadius: 'var(--border-radius)', 
                     boxShadow: 'var(--shadow-focus)',
                     position: 'relative',
@@ -43,8 +44,9 @@ const Biography = () => {
                   right: '-20px', 
                   width: '100%', 
                   height: '100%', 
-                  border: '2px solid var(--secondary-color)', 
+                  border: '1px solid var(--brand-gold)', 
                   borderRadius: 'var(--border-radius)',
+                  opacity: 0.5,
                   zIndex: 1
                 }}></div>
               </div>
@@ -54,13 +56,13 @@ const Biography = () => {
       </section>
 
       {/* Pull Quote */}
-      <section className="section text-center" style={{ backgroundColor: 'var(--bg-section)', color: 'var(--primary-color)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
+      <section className="section text-center" style={{ backgroundColor: 'var(--bg-section)', color: 'var(--text-heading)', borderTop: '4px solid var(--brand-gold)', borderBottom: '4px solid var(--brand-gold)' }}>
         <div className="container">
-          <blockquote style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <h2 style={{ fontStyle: 'italic', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', lineHeight: 1.4, color: 'var(--primary-color)' }}>
-              "Real estate is not about property; it's about people, the lives we transform, and the futures we help them build."
+          <blockquote className="quote-block" style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'left', borderLeft: 'none' }}>
+            <h2 style={{ fontStyle: 'italic', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', lineHeight: 1.2, color: 'var(--text-heading)', fontWeight: 700, textTransform: 'none' }}>
+              "Success is not just about scaling numbers; it's about <span style={{ color: 'var(--brand-gold)' }}>scaling the impact</span> of your vision on the world."
             </h2>
-            <cite style={{ display: 'block', marginTop: '2.5rem', textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--secondary-color)', fontWeight: 700 }}>
+            <cite style={{ display: 'block', marginTop: '3rem', textTransform: 'uppercase', letterSpacing: '4px', color: 'var(--brand-gold)', fontWeight: 800, fontSize: '0.9rem' }}>
               — Anthony Leuterio
             </cite>
           </blockquote>
@@ -73,24 +75,24 @@ const Biography = () => {
           <div className="grid-2" style={{ gap: '6rem' }}>
             <div>
               <h3 style={{ borderLeft: '4px solid var(--secondary-color)', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
-                Cebu to the Global Stage
+                From Vision to Global Scale
               </h3>
               <p>
-                Born and raised in Cebu City, Anthony’s journey began with a simple mission: to professionalize the real estate industry in the Philippines. He saw the potential of the archipelago's property market and realized that for it to truly thrive, it needed a unified, tech-driven network of empowered professionals.
+                Born and raised with a passion for innovation, Anthony’s journey began with a simple mission: to modernize traditional industries through digital systems. He saw the potential of emerging markets and realized that for businesses to truly thrive, they needed a unified, tech-driven network of empowered professionals.
               </p>
               <p>
-                By pioneering digital property marketing at a time when the industry was still traditional, he bridged the gap between international developers and the global Filipino diaspora, creating thousands of jobs and fueling the nation's economic growth.
+                By pioneering digital marketing at a time when the world was still catching up, he bridged the gap between local enterprise and global opportunity, creating thousands of jobs and fueling sustainable economic growth.
               </p>
             </div>
             <div>
               <h3 style={{ borderLeft: '4px solid var(--secondary-color)', paddingLeft: '1.5rem', marginBottom: '2rem' }}>
-                The "Coaching with Heart" Philosophy
+                The "Leadership with Heart" Philosophy
               </h3>
               <p>
-                Anthony’s leadership is defined by his commitment to "Coaching with Heart." He believes that a real estate professional is more than just a salesperson—they are advisors and wealth-builders.
+                Anthony’s mentorship is defined by his commitment to "Leadership with Heart." He believes that a true professional is more than just a strategist—they are visionaries and legacy-builders.
               </p>
               <p>
-                His training programs, like the Online Leads Accelerator, have become the gold standard for agents looking to scale their businesses in the digital age. Today, he continues to lead the charge in integrating AI and advanced data analytics into real estate through initiatives like Revii AI.
+                His exclusive training programs have become the gold standard for entrepreneurs looking to scale their operations in the digital age. Today, he continues to lead the charge in integrating AI and advanced data analytics into business through innovative tech initiatives.
               </p>
             </div>
           </div>
@@ -113,7 +115,7 @@ const Biography = () => {
             <div className="card text-center" style={{ padding: '2.5rem 1.5rem' }}>
               <Globe size={40} color="var(--secondary-color)" style={{ marginBottom: '1.5rem' }} />
               <h4 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Network Scaling</h4>
-              <p style={{ fontSize: '0.9rem', marginBottom: 0 }}>Founder of Filipino Homes (Largest PH Network)</p>
+              <p style={{ fontSize: '0.9rem', marginBottom: 0 }}>Founder of Global Business Ecosystems</p>
             </div>
             <div className="card text-center" style={{ padding: '2.5rem 1.5rem' }}>
               <Target size={40} color="var(--secondary-color)" style={{ marginBottom: '1.5rem' }} />
@@ -123,7 +125,7 @@ const Biography = () => {
             <div className="card text-center" style={{ padding: '2.5rem 1.5rem' }}>
               <BookOpen size={40} color="var(--secondary-color)" style={{ marginBottom: '1.5rem' }} />
               <h4 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Mentorship</h4>
-              <p style={{ fontSize: '0.9rem', marginBottom: 0 }}>Impacted 100,000+ Real Estate Professionals Globally</p>
+              <p style={{ fontSize: '0.9rem', marginBottom: 0 }}>Impacted 100,000+ Leaders Globally</p>
             </div>
           </div>
         </div>

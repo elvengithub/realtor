@@ -10,10 +10,10 @@ const LeadCaptureForm = ({ title = "Book Your Consultation" }) => {
 
   if (submitted) {
     return (
-      <div className="card text-center" style={{ padding: '4rem' }}>
-        <h3 style={{ color: 'var(--secondary-color)' }}>Thank You!</h3>
-        <p>Your request has been received. Our team will contact you within 24 hours to confirm your booking.</p>
-        <button className="btn btn-primary" style={{ marginTop: '2rem' }} onClick={() => setSubmitted(false)}>Back to Form</button>
+      <div className="card text-center" style={{ padding: '4rem', borderTop: '4px solid var(--brand-gold)' }}>
+        <h3 style={{ color: 'var(--brand-gold)' }}>Thank You!</h3>
+        <p style={{ fontWeight: 600 }}>Your request has been received. Our team will contact you within 24 hours to confirm your booking.</p>
+        <button className="btn btn-primary" style={{ marginTop: '2rem', padding: '1rem 3rem' }} onClick={() => setSubmitted(false)}>Back to Form</button>
       </div>
     );
   }

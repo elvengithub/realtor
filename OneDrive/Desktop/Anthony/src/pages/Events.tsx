@@ -35,10 +35,10 @@ const Events = () => {
   return (
     <div className="events-page">
       {/* Hero Header */}
-      <section className="section bg-light" style={{ paddingTop: '10rem' }}>
+      <section className="section bg-alt" style={{ paddingTop: '10rem' }}>
         <div className="container text-center">
           <span className="subtitle">Global Schedule</span>
-          <h1 style={{ marginBottom: '2rem' }}>Where in the World <br />is Anthony?</h1>
+          <h1 style={{ marginBottom: '2rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-1px' }}>Where in the World <br />is Anthony?</h1>
           <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '1.2rem' }}>
             Experience the energy of live training. From international summits to local intensives, join the movement redefining global real estate.
           </p>
@@ -59,18 +59,19 @@ const Events = () => {
               }}>
                 {/* Left: Date Stub */}
                 <div style={{ 
-                  background: 'var(--primary-color)', 
-                  color: 'white', 
+                  background: 'var(--luxury-gradient)', 
+                  color: 'var(--brand-black)', 
                   padding: '2rem 3rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
                   minWidth: '180px',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  boxShadow: 'inset 0 0 40px rgba(255, 255, 255, 0.3)'
                 }}>
-                  <span style={{ fontSize: '0.9rem', fontWeight: 700, letterSpacing: '2px', opacity: 0.8 }}>{event.date.split(' ')[0]}</span>
-                  <span style={{ fontSize: '3.5rem', fontWeight: 800, lineHeight: 1 }}>{event.date.split(' ')[1]}</span>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 900, letterSpacing: '2px', opacity: 0.9 }}>{event.date.split(' ')[0]}</span>
+                  <span style={{ fontSize: '3.5rem', fontWeight: 900, lineHeight: 1 }}>{event.date.split(' ')[1]}</span>
                 </div>
 
                 {/* Middle: Content */}
@@ -139,12 +140,12 @@ const Events = () => {
       {/* CTA Section */}
       <section className="section">
         <div className="container text-center">
-          <div className="card" style={{ padding: '5rem', backgroundColor: 'var(--primary-color)', color: 'white' }}>
-            <h2 className="text-white" style={{ marginBottom: '1.5rem' }}>Want Anthony to Speak at Your Event?</h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: '600px', margin: '0 auto 3rem' }}>
+          <div className="card" style={{ padding: '5rem', background: 'var(--luxury-gradient)', color: 'var(--brand-black)', border: 'none', boxShadow: 'var(--shadow-focus)' }}>
+            <h2 style={{ marginBottom: '1.5rem', color: 'var(--brand-black)', fontWeight: 900 }}>Want Anthony to Speak at Your Event?</h2>
+            <p style={{ color: 'var(--brand-black)', opacity: 0.8, maxWidth: '600px', margin: '0 auto 3rem', fontWeight: 600 }}>
               Bring world-class real estate insights and high-energy leadership to your stage. Now booking for the 2025 global season.
             </p>
-            <Link to="/contact" className="btn btn-secondary">
+            <Link to="/contact" className="btn btn-secondary" style={{ border: '2px solid var(--brand-black)', background: 'transparent', color: 'var(--brand-black)' }}>
               Inquire for Keynote <ArrowRight size={18} />
             </Link>
           </div>

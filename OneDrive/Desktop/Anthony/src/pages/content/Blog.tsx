@@ -37,11 +37,11 @@ const Blog = () => {
   return (
     <div className="content-hub">
       {/* Magazine Hero */}
-      <section className="section bg-light" style={{ paddingTop: '10rem' }}>
+      <section className="section bg-alt" style={{ paddingTop: '10rem' }}>
         <div className="container">
           <div className="section-title text-center">
             <span className="subtitle">The Archipelago Insight</span>
-            <h1>Knowledge for Global Leaders</h1>
+            <h1 style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-1px' }}>Knowledge for Global Leaders</h1>
           </div>
           
           {/* Featured Post */}
@@ -61,7 +61,7 @@ const Blog = () => {
                     <User size={16} /> Anthony Leuterio
                   </span>
                 </div>
-                <Link to="#" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>Read Full Story</Link>
+                <Link to="#" className="btn btn-primary" style={{ alignSelf: 'flex-start', padding: '1rem 3.5rem' }}>Read Full Story</Link>
               </div>
               <div style={{ 
                 backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200')`,
@@ -102,9 +102,9 @@ const Blog = () => {
                 type="text" 
                 placeholder="Search insights..." 
                 className="form-control"
-                style={{ paddingLeft: '3rem', borderRadius: '50px' }}
+                style={{ paddingLeft: '3rem', borderRadius: '0', borderColor: 'var(--brand-gold)' }}
               />
-              <Search size={18} style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+              <Search size={18} style={{ position: 'absolute', left: '1.2rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--brand-gold)' }} />
             </div>
           </div>
 
@@ -119,13 +119,13 @@ const Blog = () => {
                   backgroundPosition: 'center'
                 }}></div>
                 <div style={{ padding: '2.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <span className="subtitle" style={{ fontSize: '0.7rem', marginBottom: '0.8rem' }}>{post.category}</span>
+                  <span className="subtitle" style={{ fontSize: '0.7rem', marginBottom: '0.8rem', color: 'var(--brand-gold)' }}>{post.category}</span>
                   <h3 style={{ fontSize: '1.4rem', marginBottom: '1.2rem', lineHeight: 1.4 }}>{post.title}</h3>
                   <p style={{ fontSize: '0.95rem', marginBottom: '2rem', flex: 1 }}>{post.excerpt}</p>
                   <Link 
                     to="#" 
                     style={{ 
-                      color: 'var(--secondary-color)', 
+                      color: 'var(--brand-gold)', 
                       fontWeight: 700, 
                       textDecoration: 'none', 
                       display: 'flex', 

@@ -19,7 +19,9 @@ const Navbar = () => {
   return (
     <nav id="navbar">
       <div className="container">
-        <Link to="/" className="logo">A.G. <span>Leuterio</span></Link>
+        <Link to="/" className="logo" style={{ fontFamily: 'Barlow Condensed', fontWeight: 900, letterSpacing: '1px', fontSize: '1.8rem', color: 'var(--brand-gold)' }}>
+          ANTHONY <span style={{ color: 'var(--text-heading)' }}>LEUTERIO</span>
+        </Link>
         
         <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
           {navLinks.map((link) => (
@@ -46,7 +48,7 @@ const Navbar = () => {
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <Link to="/free-coaching-consultation" className="btn btn-primary desktop-only" style={{ padding: '0.6rem 1.5rem', marginLeft: '1.5rem' }}>
+          <Link to="/free-coaching-consultation" className="btn btn-primary desktop-only" style={{ padding: '0.6rem 2.5rem', marginLeft: '1.5rem', letterSpacing: '1px' }}>
             Book Consultation
           </Link>
 

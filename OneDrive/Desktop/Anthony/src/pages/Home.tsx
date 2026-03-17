@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Trophy, Users, Globe, PlayCircle } from 'lucide-react';
+import { Star, ArrowRight, Trophy, Users, Globe, PlayCircle } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 // Import assets
-import anthonyDarkImg from '../assets/tondark.jpg';
-import anthonyLightImg from '../assets/ton.jpg';
+import anthonyImg from '../assets/ton1.jpg';
+import tonDarkImg from '../assets/tondark1.jpg';
 
 const Home = () => {
   const { isDark } = useTheme();
@@ -12,14 +12,54 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section id="hero">
-        <div className="container">
-          <p className="subtitle reveal active">2024 International Realtor of the Year</p>
-          <h1 className="reveal active">Empowering the Future of <br />Global Real Estate</h1>
-          <div className="hero-btns reveal active" style={{ marginTop: '3rem' }}>
-            <Link to="/coaching" className="btn btn-primary">Explore Coaching</Link>
-            <Link to="/free-coaching-consultation" className="btn btn-secondary">Get Free Consultation</Link>
+      <section id="hero" className="hero" style={{ 
+        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%), url(${isDark ? tonDarkImg : anthonyImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 5%',
+        minHeight: '100vh', /* Perfect viewport fit */
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        padding: '80px 8% 60px' /* Slightly shifted right for better "small" corner look */
+      }}>
+        <div style={{ maxWidth: '500px', textAlign: 'left', position: 'relative', zIndex: 10 }}>
+          <div className="roi-badge mb-4" style={{ display: 'inline-flex' }}>
+            <Star size={12} fill="currentColor" /> 2024 International Realtor of the Year (NAR)
           </div>
+          <span className="script-text" style={{ color: 'var(--brand-gold)', fontSize: '1.4rem', display: 'block', marginBottom: '1rem', opacity: 0.8 }}>
+            Transform Your Reality
+          </span>
+          <h1 style={{ 
+            marginBottom: '2rem', 
+            fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', 
+            color: '#FFFFFF', 
+            letterSpacing: '-1.5px', 
+            lineHeight: 0.95,
+            fontWeight: 900,
+            textTransform: 'uppercase'
+          }}>
+            MASTER THE <br />
+            <span style={{ color: 'var(--brand-gold)' }}>SCIENCE</span><br />
+            OF SCALE
+          </h1>
+          <p className="mb-8" style={{ fontSize: '1.1rem', color: '#FFFFFF', maxWidth: '400px', marginBottom: '3.5rem', fontWeight: 600, lineHeight: 1.5 }}>
+            The world's most elite entrepreneurs and leaders rely on Anthony Leuterio's proven frameworks to accelerate growth, maximize impact, and secure their legacy.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
+            <Link to="/free-coaching-consultation" className="btn btn-primary" style={{ padding: '0.8rem 3.5rem', fontSize: '1rem' }}>
+              Book Consultation <ArrowRight size={18} style={{ marginLeft: '1rem' }} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Bar */}
+      <section className="section py-8" style={{ background: 'var(--bg-section)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
+        <div className="container flex-center" style={{ gap: '4rem', opacity: 0.9 }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--brand-gold)' }}>Global Dominance:</span>
+          <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>FILIPINO HOMES</span>
+          <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>LEUTERIO REALTY</span>
+          <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>RENT.PH</span>
         </div>
       </section>
 
@@ -28,24 +68,61 @@ const Home = () => {
         <div className="container">
           <div className="grid-2">
             <div className="reveal active">
-              <h2 className="section-title" style={{ marginBottom: '2rem' }}>About Anthony Gerard Orais Leuterio</h2>
-              <p className="mb-2">Anthony "Tonton" Leuterio is a visionary entrepreneur from Cebu City, recognized for building one of the largest real estate marketing networks in the Philippines and pioneering digital property marketing at scale.</p>
-              <p className="mb-4">As the Founder of Filipino Homes, he has empowered thousands of agents and brokers nationwide, connecting international developers with the growing Filipino market and global investors.</p>
+              <h2 className="section-title" style={{ marginBottom: '2rem' }}>About Anthony Orais Leuterio</h2>
+              <p className="mb-2">Anthony "Tonton" Leuterio is a visionary entrepreneur and strategic growth coach, recognized for building massive marketing networks and pioneering digital business transformation at scale.</p>
+              <p className="mb-4">With a legacy of empowering thousands of professionals and connecting global markets, Anthony now focuses on mentoring the next generation of world-class leaders and business owners.</p>
               <Link to="/biography" className="btn btn-outline">Read Full Biography</Link>
             </div>
             <div className="reveal active">
               <img 
-                src={isDark ? anthonyDarkImg : anthonyLightImg} 
+                src={isDark ? tonDarkImg : anthonyImg} 
                 alt="Anthony Leuterio" 
                 style={{ 
                   width: '100%', 
                   height: 'auto',
-                  aspectRatio: '4 / 5', /* Standard executive portrait ratio */
+                  aspectRatio: '4 / 5',
                   objectFit: 'cover',
                   borderRadius: 'var(--border-radius)', 
-                  boxShadow: 'var(--shadow-focus)' 
+                  boxShadow: 'var(--shadow-focus)',
+                  filter: 'grayscale(0.2) contrast(1.1)'
                 }} 
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ecosystem Section */}
+      <section className="section bg-light" style={{ borderTop: '1px solid var(--glass-border)' }}>
+        <div className="container">
+          <div className="text-center mb-12">
+            <span className="roi-badge mb-4">Full-Spectrum Authority</span>
+            <h2 className="section-title">The Powered Ecosystem</h2>
+            <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.2rem', color: 'var(--text-main)' }}>
+              Anthony Leuterio's coaching is fueled by the largest real estate infrastructure in the Philippines.
+            </p>
+          </div>
+          <div className="grid-3" style={{ marginTop: '4rem' }}>
+            <div className="card" style={{ padding: '3rem' }}>
+              <h3 style={{ color: 'var(--brand-orange)', marginBottom: '1rem' }}>Filipino Homes</h3>
+              <p className="mb-4">The largest comprehensive real estate solutions portal in the Philippines, connecting thousands of properties to global buyers.</p>
+              <div style={{ padding: '1rem 0', borderTop: '1px solid var(--glass-border)' }}>
+                <span style={{ fontWeight: 800, color: 'var(--brand-blue)' }}>14,000+ LICENSED AGENTS</span>
+              </div>
+            </div>
+            <div className="card" style={{ padding: '3rem' }}>
+              <h3 style={{ color: 'var(--brand-orange)', marginBottom: '1rem' }}>Leuterio Realty</h3>
+              <p className="mb-4">The country's fastest-growing real estate brand, recognized globally for excellence in brokerage and consultation.</p>
+              <div style={{ padding: '1rem 0', borderTop: '1px solid var(--glass-border)' }}>
+                <span style={{ fontWeight: 800, color: 'var(--brand-blue)' }}>100+ OFFICES NATIONWIDE</span>
+              </div>
+            </div>
+            <div className="card" style={{ padding: '3rem' }}>
+              <h3 style={{ color: 'var(--brand-orange)', marginBottom: '1rem' }}>Rent.ph</h3>
+              <p className="mb-4">The pioneer digital rental platform in the Philippines, revolutionizing how property management and leasing connect.</p>
+              <div style={{ padding: '1rem 0', borderTop: '1px solid var(--glass-border)' }}>
+                <span style={{ fontWeight: 800, color: 'var(--brand-blue)' }}>TOP RENTAL PORTAL</span>
+              </div>
             </div>
           </div>
         </div>
@@ -55,8 +132,8 @@ const Home = () => {
       <section className="section">
         <div className="container">
           <div className="text-center mb-4">
-            <h2 className="section-title">Coaching Programs</h2>
-            <p style={{ maxWidth: '700px', margin: '0 auto' }}>Transform your real estate career with elite coaching designed for high-performance agents and team leaders.</p>
+            <h2 className="section-title">The Masterclasses</h2>
+            <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.15rem', opacity: 0.7, lineHeight: 1.8 }}>Refined strategies built for those who refuse to settle for the status quo. Our programs are engineered to deliver measurable ROI and transformative leadership.</p>
           </div>
           <div className="grid-3">
             <div className="card text-center" style={{ padding: '3rem 2rem' }}>
@@ -141,7 +218,7 @@ const Home = () => {
               <div>
                 <h4 className="org">Workshop</h4>
                 <h3>The Edge Intensive</h3>
-                <p>Cebu City, Philippines. High-impact sales training for real estate professionals.</p>
+                <p>Strategic growth training for entrepreneurs and high-impact professionals.</p>
                 <Link to="/the-edge" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '1rem' }}>
                   Register Now <ArrowRight size={16} />
                 </Link>
@@ -199,7 +276,7 @@ const Home = () => {
         <div className="container">
           <div className="section-title text-center">
             <span className="subtitle">Success Stories</span>
-            <h2>Real Results from Real Agents</h2>
+            <h2>Real Results from Real Leaders</h2>
           </div>
           <div className="grid-2">
             <div className="card" style={{ padding: '4rem', display: 'flex', flexDirection: 'column' }}>
@@ -211,11 +288,11 @@ const Home = () => {
                 />
                 <div>
                   <h4 style={{ marginBottom: '0.2rem' }}>Maria Santos</h4>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Top Producer, Makati</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Founding Partner, Growth Architects</span>
                 </div>
               </div>
               <p style={{ fontStyle: 'italic', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem' }}>
-                "Anthony's coaching completely changed my perspective on real estate. I went from struggling to find leads to closing multiple deals every month using his digital systems. My GCI increased by 400% in just one year."
+                "Anthony's coaching completely changed my perspective on leadership. I went from struggling with operations to scaling my business globally using his strategic systems. Our revenue increased by 400% in just one year."
               </p>
             </div>
             <div className="card" style={{ padding: '4rem', display: 'flex', flexDirection: 'column' }}>
@@ -227,7 +304,7 @@ const Home = () => {
                 />
                 <div>
                   <h4 style={{ marginBottom: '0.2rem' }}>John Doe</h4>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Broker Owner, Cebu</span>
+                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>CEO, Strategic Ventures</span>
                 </div>
               </div>
               <p style={{ fontStyle: 'italic', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem' }}>
@@ -242,11 +319,11 @@ const Home = () => {
       </section>
 
       {/* Consultation CTA */}
-      <section className="section" style={{ background: 'var(--primary-color)', color: 'white' }}>
+      <section className="section" style={{ background: 'var(--bg-section)', color: 'var(--text-main)', borderTop: '4px solid var(--brand-orange)' }}>
         <div className="container text-center">
-          <h2 className="section-title text-white">Ready to Elevate Your Career?</h2>
-          <p className="mb-4" style={{ fontSize: '1.25rem', opacity: 0.9, maxWidth: '800px', margin: '0 auto 4rem' }}>Book your free coaching consultation today and find out which program is right for you. Our experts are ready to help you map out your path to success.</p>
-          <Link to="/free-coaching-consultation" className="btn btn-primary" style={{ padding: '1.5rem 4rem', fontSize: '1.1rem' }}>Book Your Free Consultation Now</Link>
+          <h2 className="section-title" style={{ fontSize: '3rem', color: 'var(--text-heading)' }}>Ready to Take Command?</h2>
+          <p className="mb-4" style={{ fontSize: '1.4rem', opacity: 0.9, maxWidth: '850px', margin: '0 auto 4rem', fontWeight: 500, color: 'var(--text-main)' }}>The window to redefine your future is narrowing. Secure your diagnostic strategy session today.</p>
+          <Link to="/free-coaching-consultation" className="btn btn-primary" style={{ padding: '1.8rem 5rem', fontSize: '1.2rem' }}>Initiate Your Transformation</Link>
         </div>
       </section>
     </div>

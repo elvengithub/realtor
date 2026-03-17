@@ -34,14 +34,14 @@ const Contact = () => {
               <div style={{ paddingLeft: '1rem' }}>
                 <h3 style={{ marginBottom: '2rem' }}>Office Locations</h3>
                 <div style={{ display: 'flex', gap: '1.5rem', marginBottom: '2rem' }}>
-                  <MapPin size={20} color="var(--secondary-color)" />
+                  <MapPin size={20} color="var(--brand-gold)" />
                   <div>
                     <strong style={{ display: 'block', marginBottom: '0.3rem' }}>Cebu Headquarters</strong>
                     <p style={{ fontSize: '0.95rem' }}>Filipino Homes Tower, Cebu Business Park, Cebu City, Philippines</p>
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: '1.5rem' }}>
-                  <Clock size={20} color="var(--secondary-color)" />
+                  <Clock size={20} color="var(--brand-gold)" />
                   <div>
                     <strong style={{ display: 'block', marginBottom: '0.3rem' }}>Business Hours</strong>
                     <p style={{ fontSize: '0.95rem' }}>Monday – Friday: 9:00 AM – 6:00 PM (GMT+8)</p>

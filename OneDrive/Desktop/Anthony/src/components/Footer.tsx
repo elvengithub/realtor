@@ -3,12 +3,16 @@ import { Facebook, Instagram, Twitter, Youtube, Linkedin, Music } from 'lucide-r
 
 const Footer = () => {
   return (
-    <footer>
+    <footer style={{ background: 'var(--bg-section)', borderTop: '1px solid var(--brand-gold)', padding: '6rem 0 3rem' }}>
       <div className="container">
         <div className="footer-grid">
           <div className="footer-col">
-            <Link to="/" className="logo">A.G. <span>Leuterio</span></Link>
-            <p style={{ marginTop: '1.5rem', opacity: 0.8 }}>Global Real Estate Leader, Founder of Filipino Homes, and 2024 International Realtor of the Year. Dedicated to empowering the next generation of real estate professionals.</p>
+            <Link to="/" className="logo" style={{ fontFamily: 'Barlow Condensed', fontWeight: 900, letterSpacing: '1px', fontSize: '1.5rem', color: 'var(--brand-gold)' }}>
+              ANTHONY <span style={{ color: 'var(--text-heading)' }}>LEUTERIO</span>
+            </Link>
+            <p style={{ marginTop: '1.5rem', opacity: 0.9, color: 'var(--text-main)', fontWeight: 500 }}>
+              2024 NAR International Realtor of the Year. Founder of Filipino Homes. Global authority in real estate scaling and executive coaching.
+            </p>
             <div className="social-links">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><Facebook size={20} /></a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><Instagram size={20} /></a>
@@ -20,7 +24,7 @@ const Footer = () => {
           </div>
           
           <div className="footer-col">
-            <h4>Quick Links</h4>
+            <h4 style={{ color: 'var(--brand-blue)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem', marginBottom: '2rem' }}>Quick Links</h4>
             <ul className="footer-links">
               <li><Link to="/coaching">Coaching Programs</Link></li>
               <li><Link to="/events">Upcoming Events</Link></li>
@@ -32,7 +36,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-col">
-            <h4>About</h4>
+            <h4 style={{ color: 'var(--brand-blue)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem', marginBottom: '2rem' }}>About</h4>
             <ul className="footer-links">
               <li><Link to="/biography">Biography</Link></li>
               <li><Link to="/our-mission">Our Mission</Link></li>
@@ -42,7 +46,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-col">
-            <h4>Support</h4>
+            <h4 style={{ color: 'var(--brand-blue)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem', marginBottom: '2rem' }}>Support</h4>
             <ul className="footer-links">
               <li><Link to="/terms">Terms of Use</Link></li>
               <li><Link to="/privacy">Privacy Policy</Link></li>

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Coaching from './pages/Coaching';
@@ -58,70 +57,68 @@ import Privacy from './pages/legal/Privacy';
 
 function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          
-          {/* Coaching */}
-          <Route path="coaching" element={<Coaching />} />
-          <Route path="real-estate-coaching-programs" element={<CoachingPrograms />} />
-          <Route path="coaching-plans" element={<CoachingPlans />} />
-          <Route path="coaching-core" element={<CoachingCore />} />
-          <Route path="coaching-elite" element={<CoachingElite />} />
-          <Route path="our-programs" element={<OurPrograms />} />
-          <Route path="our-programs/our-coaches" element={<OurCoaches />} />
-          <Route path="tflists" element={<TFLists />} />
-          <Route path="testimonials" element={<Testimonials />} />
-          <Route path="free-coaching-consultation" element={<FreeConsultation />} />
-          <Route path="elite-deal-consultation" element={<EliteConsultation />} />
-          <Route path="listing-velocity-consultation" element={<ListingVelocityConsultation />} />
-          <Route path="coaching-faq" element={<CoachingFAQ />} />
+    <Router>
+      <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        
+        {/* Coaching */}
+        <Route path="coaching" element={<Coaching />} />
+        <Route path="real-estate-coaching-programs" element={<CoachingPrograms />} />
+        <Route path="coaching-plans" element={<CoachingPlans />} />
+        <Route path="coaching-core" element={<CoachingCore />} />
+        <Route path="coaching-elite" element={<CoachingElite />} />
+        <Route path="our-programs" element={<OurPrograms />} />
+        <Route path="our-programs/our-coaches" element={<OurCoaches />} />
+        <Route path="tflists" element={<TFLists />} />
+        <Route path="testimonials" element={<Testimonials />} />
+        <Route path="free-coaching-consultation" element={<FreeConsultation />} />
+        <Route path="elite-deal-consultation" element={<EliteConsultation />} />
+        <Route path="listing-velocity-consultation" element={<ListingVelocityConsultation />} />
+        <Route path="coaching-faq" element={<CoachingFAQ />} />
 
-          {/* Training */}
-          <Route path="program-online-leads-accelerator" element={<OnlineLeadsAccelerator />} />
-          <Route path="program-prospecting-bootcamp" element={<ProspectingBootcamp />} />
-          <Route path="program-recruiting-roadmap" element={<RecruitingRoadmap />} />
-          <Route path="altman-advantage" element={<AltmanAdvantage />} />
-          <Route path="program-fast-track" element={<FastTrack />} />
-          <Route path="advantage" element={<Advantage />} />
-          <Route path="agent-tools" element={<AgentTools />} />
-          <Route path="agent-tools/brilliant-social-content-offer" element={<SocialContentOffer />} />
-          <Route path="agent-tools/control-narrative-offer" element={<ControlNarrativeOffer />} />
-          <Route path="agent-tools/ai-integration-lclf-offer" element={<AIIntegrationOffer />} />
+        {/* Training */}
+        <Route path="program-online-leads-accelerator" element={<OnlineLeadsAccelerator />} />
+        <Route path="program-prospecting-bootcamp" element={<ProspectingBootcamp />} />
+        <Route path="program-recruiting-roadmap" element={<RecruitingRoadmap />} />
+        <Route path="altman-advantage" element={<AltmanAdvantage />} />
+        <Route path="program-fast-track" element={<FastTrack />} />
+        <Route path="advantage" element={<Advantage />} />
+        <Route path="agent-tools" element={<AgentTools />} />
+        <Route path="agent-tools/brilliant-social-content-offer" element={<SocialContentOffer />} />
+        <Route path="agent-tools/control-narrative-offer" element={<ControlNarrativeOffer />} />
+        <Route path="agent-tools/ai-integration-lclf-offer" element={<AIIntegrationOffer />} />
 
-          {/* Events */}
-          <Route path="events" element={<Events />} />
-          <Route path="summit" element={<Summit />} />
-          <Route path="the-edge" element={<TheEdge />} />
-          <Route path="webinars" element={<Webinars />} />
-          <Route path="speakers" element={<Speakers />} />
+        {/* Events */}
+        <Route path="events" element={<Events />} />
+        <Route path="summit" element={<Summit />} />
+        <Route path="the-edge" element={<TheEdge />} />
+        <Route path="webinars" element={<Webinars />} />
+        <Route path="speakers" element={<Speakers />} />
 
-          {/* Content */}
-          <Route path="blog" element={<Blog />} />
-          <Route path="podcast" element={<Podcast />} />
-          <Route path="tfshow" element={<TFShow />} />
-          <Route path="mindset" element={<Mindset />} />
-          <Route path="marketing" element={<Marketing />} />
+        {/* Content */}
+        <Route path="blog" element={<Blog />} />
+        <Route path="podcast" element={<Podcast />} />
+        <Route path="tfshow" element={<TFShow />} />
+        <Route path="mindset" element={<Mindset />} />
+        <Route path="marketing" element={<Marketing />} />
 
-          {/* About */}
-          <Route path="biography" element={<Biography />} />
-          <Route path="ferry-international" element={<FerryInternational />} />
-          <Route path="our-mission" element={<OurMission />} />
-          <Route path="careers" element={<Careers />} />
-          <Route path="contact" element={<Contact />} />
+        {/* About */}
+        <Route path="biography" element={<Biography />} />
+        <Route path="ferry-international" element={<FerryInternational />} />
+        <Route path="our-mission" element={<OurMission />} />
+        <Route path="careers" element={<Careers />} />
+        <Route path="contact" element={<Contact />} />
 
-          {/* Legal */}
-          <Route path="terms" element={<Terms />} />
-          <Route path="privacy" element={<Privacy />} />
+        {/* Legal */}
+        <Route path="terms" element={<Terms />} />
+        <Route path="privacy" element={<Privacy />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </Router>
-    </ThemeProvider>
-    );
-    }
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  </Router>
+  );
+}
 
     export default App;

@@ -40,9 +40,11 @@ const Training = () => {
       <section className="section bg-alt">
         <div className="container text-center">
           <h2 className="section-title">Ready to Elevate Your Skills?</h2>
-          <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/free-coaching-consultation" className="btn btn-primary">Book Consultation</Link>
-            <Link to="/advantage" className="btn btn-outline">Explore Advantage</Link>
+          <div className="flex-center" style={{ flexDirection: 'column', gap: '1.5rem', width: '100%', marginTop: '2rem' }}>
+            <Link to="/free-coaching-consultation" className="btn btn-primary" style={{ padding: '1rem 4rem' }}>
+              Book Consultation
+            </Link>
+            <Link to="/advantage" className="btn btn-outline" style={{ padding: '0.8rem 3rem' }}>Explore Advantage</Link>
           </div>
         </div>
       </section>
