@@ -67,9 +67,16 @@ Visit `http://localhost:3000`
 
 1. Create a project on [Supabase.com](https://supabase.com)
 2. Run `supabase/supabase_schema.sql` in the SQL Editor
-3. Add credentials to `.env.local`:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Run `node supabase/init_supabase.js` to initialize the admin user (after configuring the service role key)
+4. Use the following credentials for testing:
+
+### 🔗 Connection Details
+- **Supabase URL**: `https://csteoeudjuzyhkhjaszo.supabase.co`
+- **Anon Key**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNzdGVvZXVkanV6eWhraGphc3pvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyNDg2MDksImV4cCI6MjA4OTgyNDYwOX0.R2IsssIzOYjDMQiu_0Ona6zjI3COy2ui_swbFpFaroU`
+
+### 👤 Default Admin Account
+- **Email**: `admin@leuterio.com`
+- **Password**: `admin123`
 
 ---
 

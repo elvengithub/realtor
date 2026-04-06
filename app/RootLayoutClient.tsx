@@ -16,7 +16,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
     '/login'
   ];
   
-  const isDashboardRoute = dashboardRoutes.some(route => pathname === route || pathname.startsWith(route + '/'));
+  const isDashboardRoute = pathname ? dashboardRoutes.some(route => pathname === route || pathname.startsWith(route + '/')) : false;
 
   return (
     <>
