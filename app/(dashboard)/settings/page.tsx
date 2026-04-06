@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/src/lib/supabase";
 import { 
   Save, Loader2, Globe, Facebook, Instagram, Linkedin, Mail, Phone, MapPin, 
@@ -24,11 +24,26 @@ export default function SettingsPage() {
     { id: "event", label: "Upcoming Event", icon: Calendar },
   ];
 
-  useEffect(() => {
-    fetchSectionData(activeSection);
-  }, [activeSection]);
+  function getDefaults(id: SectionId) {
+    const defaults: Record<SectionId, any> = {
+      settings: {
+        branding: { site_name: "Anthony Leuterio", site_description: "Master the Science of Scale", logo_url: "" },
+        contact: { email: "support@antonioleuterio.com", phone: "+63 912 345 6789", address: "Cebu City, Philippines" },
+        social: { facebook: "https://facebook.com", instagram: "https://instagram.com", linkedin: "https://linkedin.com", youtube: "https://youtube.com" }
+      },
+      hero: { title: "MASTER THE SCIENCE OF SCALE", subtitle: "", description: "", image: "", cta_text: "Explore Coaching", cta_link: "/coaching" },
+      intro: { title: "", subtitle: "", name: "Anthony Leuterio", bio: "", quote: "", image: "" },
+      ecosystem: {
+        filipino_homes: { title: "Filipino Homes", stat: "", description: "" },
+        leuterio_realty: { title: "Leuterio Realty", stat: "", description: "" },
+        rent_ph: { title: "Rent.ph", stat: "", description: "" }
+      },
+      event: { badge: "Live Intensive", title: "", date: "", location: "", description: "", image: "", cta_text: "Secure Your Seat", cta_link: "/events", availability: "" }
+    };
+    return defaults[id];
+  }
 
-  async function fetchSectionData(id: SectionId) {
+  const fetchSectionData = useCallback(async (id: SectionId) => {
     setLoading(true);
     try {
       const { data, error } = await supabase
@@ -51,26 +66,11 @@ export default function SettingsPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  function getDefaults(id: SectionId) {
-    const defaults: Record<SectionId, any> = {
-      settings: {
-        branding: { site_name: "Anthony Leuterio", site_description: "Master the Science of Scale", logo_url: "" },
-        contact: { email: "support@antonioleuterio.com", phone: "+63 912 345 6789", address: "Cebu City, Philippines" },
-        social: { facebook: "https://facebook.com", instagram: "https://instagram.com", linkedin: "https://linkedin.com", youtube: "https://youtube.com" }
-      },
-      hero: { title: "MASTER THE SCIENCE OF SCALE", subtitle: "", description: "", image: "", cta_text: "Explore Coaching", cta_link: "/coaching" },
-      intro: { title: "", subtitle: "", name: "Anthony Leuterio", bio: "", quote: "", image: "" },
-      ecosystem: {
-        filipino_homes: { title: "Filipino Homes", stat: "", description: "" },
-        leuterio_realty: { title: "Leuterio Realty", stat: "", description: "" },
-        rent_ph: { title: "Rent.ph", stat: "", description: "" }
-      },
-      event: { badge: "Live Intensive", title: "", date: "", location: "", description: "", image: "", cta_text: "Secure Your Seat", cta_link: "/events", availability: "" }
-    };
-    return defaults[id];
-  }
+  useEffect(() => {
+    fetchSectionData(activeSection);
+  }, [activeSection, fetchSectionData]);
 
   const handleUpdate = (path: string[], value: any) => {
     setSettings((prev: any) => {

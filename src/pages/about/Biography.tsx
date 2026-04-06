@@ -5,6 +5,7 @@ import anthonyDarkImg from '../../assets/tondark1.jpg';
 import anthonyLightImg from '../../assets/ton1.jpg';
 import { Award, Globe, Zap, Pencil } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Biography = () => {
   const { isDark } = useTheme();
@@ -37,11 +38,15 @@ const Biography = () => {
             </div>
             <div className="reveal active">
               <div style={{ position: 'relative' }}>
-                <img 
-                  src={isDark ? (anthonyDarkImg as any).src : (anthonyLightImg as any).src} 
+                <Image 
+                  src={isDark ? anthonyDarkImg : anthonyLightImg} 
                   alt="Anthony Leuterio" 
+                  width={600}
+                  height={750}
+                  priority
                   style={{ 
                     width: '100%', 
+                    height: 'auto',
                     aspectRatio: '4 / 5', 
                     objectFit: 'cover', 
                     objectPosition: 'center 10%',

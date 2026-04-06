@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Globe, Trophy, Loader2, Pencil } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -176,9 +177,11 @@ const Home = () => {
               <Link href="/about" className="btn btn-outline">Read Full Biography</Link>
             </div>
             <div className="reveal active">
-              <img 
-                src={(typeof intro.image === 'string' && intro.image.startsWith('http')) ? intro.image : (isDark ? (tonDarkImg as any).src : (anthonyImg as any).src)} 
-                alt={intro.name} 
+              <Image 
+                src={(typeof intro.image === 'string' && intro.image.startsWith('http')) ? intro.image : (isDark ? tonDarkImg : anthonyImg)} 
+                alt={intro.name || "Anthony Leuterio"} 
+                width={500}
+                height={625}
                 style={{ 
                   width: '100%', 
                   height: 'auto',
@@ -413,11 +416,15 @@ const Home = () => {
           <div className="grid-2">
             <div className="card" style={{ padding: '4rem', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" 
-                  alt="Maria Santos" 
-                  style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }} 
-                />
+                <div style={{ position: 'relative', width: '80px', height: '80px' }}>
+                  <Image 
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" 
+                    alt="Maria Santos" 
+                    fill
+                    sizes="80px"
+                    style={{ borderRadius: '50%', objectFit: 'cover' }} 
+                  />
+                </div>
                 <div>
                   <h4 style={{ marginBottom: '0.2rem' }}>Maria Santos</h4>
                   <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Founding Partner, Growth Architects</span>
@@ -429,11 +436,15 @@ const Home = () => {
             </div>
             <div className="card" style={{ padding: '4rem', display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" 
-                  alt="John Doe" 
-                  style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }} 
-                />
+                <div style={{ position: 'relative', width: '80px', height: '80px' }}>
+                  <Image 
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" 
+                    alt="John Doe" 
+                    fill
+                    sizes="80px"
+                    style={{ borderRadius: '50%', objectFit: 'cover' }} 
+                  />
+                </div>
                 <div>
                   <h4 style={{ marginBottom: '0.2rem' }}>John Doe</h4>
                   <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>CEO, Strategic Ventures</span>

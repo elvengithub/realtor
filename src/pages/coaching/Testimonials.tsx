@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import { Star, PlayCircle, Quote, TrendingUp, Users, Globe } from 'lucide-react';
 import Link from 'next/link';
 
@@ -96,7 +97,15 @@ const Testimonials = () => {
             {testimonials.map(t => (
               <div key={t.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
-                  <img src={t.image} alt={t.name} style={{ width: '70px', height: '70px', borderRadius: '50%', objectFit: 'cover' }} />
+                  <div style={{ position: 'relative', width: '70px', height: '70px' }}>
+                    <Image 
+                      src={t.image} 
+                      alt={t.name} 
+                      fill
+                      sizes="70px"
+                      style={{ borderRadius: '50%', objectFit: 'cover' }} 
+                    />
+                  </div>
                   <div>
                     <h4 style={{ marginBottom: '0.2rem' }}>{t.name}</h4>
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{t.role}</span>
