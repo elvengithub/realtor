@@ -65,6 +65,7 @@ Do **not** add a root `vercel.json` with a catch-all rewrite like `"/(.*)" → "
 | Issue | What to check |
 |--------|----------------|
 | Build completes in ~100ms, no real Next.js build | Wrong production branch, or repo missing `package.json` on that branch. Set Production Branch to `main` or ensure `master` includes the full app. |
+| npm warns Next.js is deprecated / security issue | Stay on the latest **patched** release in your line (this repo pins `next@15.2.8`). See [Next.js security advisories](https://nextjs.org/blog). |
 | Build fails on `npm install` | Ensure `.npmrc` is committed; run `npm install` locally to refresh `package-lock.json` if you changed dependencies. |
 | Build fails on ESLint | Run `npm run build` locally. The project extends `next/core-web-vitals` with `react/no-unescaped-entities` disabled so content-heavy pages do not block the build. |
 | Auth or dashboard broken | Confirm `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set for the environment you are testing and **redeploy** after changing them. |
