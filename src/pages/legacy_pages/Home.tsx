@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Users, Globe, Trophy, Loader2, Pencil } from 'lucide-react';
+import { Users, Globe, Trophy, Pencil } from 'lucide-react';
 import { useTheme } from '@/src/context/ThemeContext';
 import { useAuth } from '@/src/context/AuthContext';
 import { supabase } from '@/src/lib/supabase';
@@ -17,28 +17,29 @@ const Home = () => {
   const { user } = useAuth();
   const [content, setContent] = useState<any>(null);
   const [companies, setCompanies] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPageData() {
-      const [contentRes, companiesRes] = await Promise.all([
-        supabase.from('site_content').select('*'),
-        fetchTopCompanies()
-      ]);
+      try {
+        const [contentRes, companiesRes] = await Promise.all([
+          supabase.from('site_content').select('*'),
+          fetchTopCompanies(),
+        ]);
 
-      if (contentRes.data) {
-        const contentMap = contentRes.data.reduce((acc: any, item: any) => {
-          acc[item.id] = item.content;
-          return acc;
-        }, {});
-        setContent(contentMap);
+        if (contentRes.data && Array.isArray(contentRes.data)) {
+          const contentMap = contentRes.data.reduce((acc: any, item: any) => {
+            acc[item.id] = item.content;
+            return acc;
+          }, {});
+          setContent(contentMap);
+        }
+
+        if (companiesRes.success && companiesRes.data) {
+          setCompanies(companiesRes.data);
+        }
+      } catch {
+        // CMS is optional; defaults below keep the marketing page usable.
       }
-
-      if (companiesRes.success) {
-        setCompanies(companiesRes.data);
-      }
-
-      setLoading(false);
     }
     fetchPageData();
   }, []);
@@ -80,14 +81,6 @@ const Home = () => {
     day: "15",
     month: "Nov 2024"
   };
-
-  if (loading) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)' }}>
-        <Loader2 className="animate-spin" size={48} style={{ color: 'var(--brand-gold)' }} />
-      </div>
-    );
-  }
 
   return (
     <div className="home-page">
