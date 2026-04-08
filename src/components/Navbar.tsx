@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Sun, Moon, Menu, X, LogOut, User as UserIcon, Settings } from 'lucide-react';
+import { Sun, Moon, Menu, X, LogOut, Settings } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';

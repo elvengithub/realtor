@@ -8,58 +8,58 @@
 /* Design tokens — light (default) & dark ([data-theme="dark"])               */
 /* -------------------------------------------------------------------------- */
 :root {
-  /* Saudi Gold Premium Palette */
-  --brand-gold: #e5c05b;
-  --brand-gold-rgb: 229, 192, 91;
-  --brand-gold-deep: #b38728;
-  --brand-gold-deep-rgb: 179, 135, 40;
-  --brand-gold-vibrant: #ffdf00;
-  --brand-black: #080808;
-  --brand-black-rgb: 8, 8, 8;
-  --brand-cream: #fdfbf7;
+  /* Dubai Gold Premium Palette */
+  --brand-gold: #d4af37; /* Royal Gold */
+  --brand-gold-rgb: 212, 175, 55;
+  --brand-gold-deep: #996515; /* Golden Brown */
+  --brand-gold-deep-rgb: 153, 101, 21;
+  --brand-gold-vibrant: #ffd700; /* Pure Gold */
+  --brand-black: #0a0a0a;
+  --brand-black-rgb: 10, 10, 10;
+  --brand-cream: #faf9f6;
   
   /* Luxury Obsidian for Premium Feel */
   --obsidian: #050505;
-  --obsidian-alt: #0a0a0a;
+  --obsidian-alt: #0f0f0f;
 
-  --luxury-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-  --gold-gradient: linear-gradient(135deg, #e5c05b, #c19a35, #b38728);
-  --glass-gold: rgba(229, 192, 91, 0.12);
+  --luxury-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 70%, #fbf5b7 85%, #aa771c 100%);
+  --gold-gradient: linear-gradient(135deg, #d4af37, #996515);
+  --glass-gold: rgba(212, 175, 55, 0.15);
   
-  --container-width: 1240px;
-  --border-radius: 14px;
-  --shadow-lux: 0 32px 64px -12px rgba(0, 0, 0, 0.14);
-  --glass-border: rgba(229, 192, 91, 0.25);
+  --container-width: 1280px;
+  --border-radius: 16px;
+  --shadow-lux: 0 32px 64px -12px rgba(0, 0, 0, 0.2);
+  --glass-border: rgba(212, 175, 55, 0.3);
 
-  --bg-primary: #fdfbf7;
-  --bg-section: #f4f0e8;
+  --bg-primary: #faf9f6;
+  --bg-section: #f2f0e9;
   --bg-base: #ffffff;
-  --bg-alt: #ebe6dc;
+  --bg-alt: #e8e4d8;
   --bg-card: #ffffff;
 
-  --text-heading: #121212;
-  --text-main: #333333;
+  --text-heading: #0a0a0a;
+  --text-main: #2d2d2d;
   --text-muted: #666666;
-  --text-body: #4a4a4a;
+  --text-body: #404040;
 
-  --border-color: rgba(179, 135, 40, 0.15);
+  --border-color: rgba(153, 101, 21, 0.2);
 }
 
 [data-theme='dark'] {
   --bg-primary: #050505;
-  --bg-section: #080808;
-  --bg-base: #0a0a0a;
-  --bg-alt: #0d0d0d;
+  --bg-section: #0a0a0a;
+  --bg-base: #000000;
+  --bg-alt: #121212;
   --bg-card: #121212;
 
   --text-heading: #ffffff;
-  --text-main: #e0e0e0;
-  --text-muted: #888888;
-  --text-body: #cccccc;
+  --text-main: #e5e5e5;
+  --text-muted: #a3a3a3;
+  --text-body: #d4d4d4;
 
-  --border-color: rgba(229, 192, 91, 0.1);
-  --glass-border: rgba(229, 192, 91, 0.2);
-  --shadow-lux: 0 40px 80px -20px rgba(0, 0, 0, 0.65);
+  --border-color: rgba(212, 175, 55, 0.15);
+  --glass-border: rgba(212, 175, 55, 0.25);
+  --shadow-lux: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
 }
 
 /* -------------------------------------------------------------------------- */
