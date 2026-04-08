@@ -49,8 +49,8 @@ const Navbar = () => {
   return (
     <nav id="navbar">
       <div className="container">
-        <Link href="/" className="logo" style={{ fontFamily: 'Barlow Condensed', fontWeight: 900, letterSpacing: '1px', fontSize: '1.8rem', color: 'var(--brand-gold)' }}>
-          {firstName} <span style={{ color: 'var(--text-heading)' }}>{restName}</span>
+        <Link href="/" className="logo" style={{ fontFamily: 'Barlow Condensed', fontWeight: 900, letterSpacing: '1px', fontSize: '1.8rem' }}>
+          <span className="text-gold">{firstName}</span> <span style={{ color: 'var(--text-heading)' }}>{restName}</span>
         </Link>
         
         <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
@@ -71,9 +71,16 @@ const Navbar = () => {
           <div className="auth-buttons" style={{ display: 'flex', alignItems: 'center', marginLeft: '1rem', gap: '1rem' }}>
             {user ? (
               <>
-                <div className="user-profile" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-heading)', fontSize: '0.9rem' }}>
-                  <UserIcon size={18} />
-                  <span className="hide-mobile">{(user.email || "").split('@')[0]}</span>
+                <div className="user-profile" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-heading)', fontSize: '0.9rem' }}>
+                  <div style={{ position: 'relative', width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--brand-gold)' }}>
+                    <Image 
+                      src="/img/ton1.jpg" 
+                      alt="Profile" 
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
+                  <span className="hide-mobile" style={{ fontWeight: 600 }}>{(user.email || "").split('@')[0]}</span>
                 </div>
                 <Link 
                   href="/settings"
@@ -99,7 +106,7 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <Link href="/login" className="btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '0.875rem' }}>
+              <Link href="/login" className="btn-primary shimmer-gold" style={{ fontSize: '0.875rem' }}>
                 Login
               </Link>
             )}

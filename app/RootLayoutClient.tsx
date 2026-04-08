@@ -1,6 +1,8 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Navbar from "@/src/components/Navbar";
+import Footer from "@/src/components/Footer";
+import AccessibilityWidget from "@/src/components/AccessibilityWidget";
 
 export default function RootLayoutClient({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -22,6 +24,8 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
     <>
       {!isDashboardRoute && <Navbar />}
       {children}
+      {!isDashboardRoute && <Footer />}
+      {!isDashboardRoute && <AccessibilityWidget />}
     </>
   );
 }

@@ -8,9 +8,10 @@ import { useAuth } from '@/src/context/AuthContext';
 import { supabase } from '@/src/lib/supabase';
 import { fetchTopCompanies } from '@/src/lib/cms';
 
-// Import assets
-import anthonyImg from '@/src/assets/ton1.jpg';
-import tonDarkImg from '@/src/assets/tondark1.jpg';
+// Explicit static paths for public/img/ assets
+const PATH_LIGHT_BODY = '/img/ton1.jpg';
+const PATH_LIGHT_HERO = '/img/ton.jpg';
+const PATH_DARK = '/img/tondark1.jpg';
 
 const Home = () => {
   const { isDark } = useTheme();
@@ -44,12 +45,16 @@ const Home = () => {
     fetchPageData();
   }, []);
 
-  // Fallback defaults if content isn''t loaded yet
+  // Determine current images based on theme state
+  const currentHeroImg = isDark ? PATH_DARK : PATH_LIGHT_HERO;
+  const currentBodyImg = isDark ? PATH_DARK : PATH_LIGHT_BODY;
+
+  // Fallback defaults if content isn't loaded yet
   const hero = content?.hero || {
     title: "MASTER THE SCIENCE OF SCALE",
     subtitle: "2024 International Realtor of the Year (NAR)",
     description: "The world's most elite entrepreneurs and leaders rely on Anthony Leuterio's proven frameworks to accelerate growth, maximize impact, and secure their legacy.",
-    image: anthonyImg,
+    image: currentHeroImg,
     cta_text: "Explore Coaching",
     cta_link: "/coaching"
   };
@@ -59,7 +64,7 @@ const Home = () => {
     subtitle: "Founder of Filipino Homes & Leuterio Realty",
     bio: "Anthony \"Tonton\" Leuterio is not just an entrepreneur; he is a movement builder. As the founder of the largest real estate ecosystem in the Philippines, he has empowered over 14,000 agents to achieve financial independence.",
     quote: "My philosophy is simple: God first, then family, then business. When you build with this foundation, success isn't just a goal—it's an inevitability.",
-    image: anthonyImg
+    image: currentBodyImg
   };
 
   const ecosystem = content?.ecosystem || {
@@ -83,30 +88,35 @@ const Home = () => {
   };
 
   return (
-    <div className="home-page">
+    <div className="home-page" style={{ background: isDark ? '#000000' : '#ffffff' }}>
       {/* Hero Section */}
-      <section id="hero" className="hero" style={{ 
-        backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%), url(${(typeof hero.image === 'string' && hero.image.startsWith('http')) ? hero.image : (anthonyImg as any).src})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 5%',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        padding: '100px 8% 80px 12%',
-        position: 'relative'
-      }}>
+      <section 
+        id="hero" 
+        key={`hero-bg-${isDark}`} 
+        className="hero" 
+        style={{ 
+          backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%), url("${currentHeroImg}")`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 5%',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
+          padding: '100px 8% 80px 12%',
+          position: 'relative'
+        }}
+      >
         {user && (
           <Link 
             href="/content" 
-            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: 'var(--brand-gold)', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
             title="Edit Hero Content"
           >
             <Pencil size={20} />
           </Link>
         )}
         <div style={{ maxWidth: '600px', textAlign: 'left', position: 'relative', zIndex: 10 }}>
-          <p style={{ color: 'var(--brand-gold)', fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.5rem' }}>
+          <p style={{ color: '#D4AF37', fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.5rem' }}>
             {hero.subtitle}
           </p>
           <p style={{ color: '#FFFFFF', fontSize: '1.4rem', marginBottom: '1.5rem', fontWeight: 500, opacity: 0.9 }}>
@@ -132,7 +142,7 @@ const Home = () => {
             {hero.description}
           </p>
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-            <Link href={hero.cta_link} className="btn btn-primary" style={{ padding: '1rem 3.5rem', fontSize: '1.1rem' }}>
+            <Link href={hero.cta_link} className="btn" style={{ background: '#D4AF37', color: 'black', padding: '1rem 3.5rem', fontSize: '1.1rem', fontWeight: 800, textDecoration: 'none' }}>
               {hero.cta_text}
             </Link>
           </div>
@@ -140,45 +150,46 @@ const Home = () => {
       </section>
 
       {/* Trust Bar / Top Companies */}
-      <section className="section py-8" style={{ background: 'var(--bg-section)' }}>
-        <div className="container flex-center" style={{ gap: '4rem', opacity: 0.9, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--brand-gold)' }}>Global Dominance:</span>
+      <section className="section py-12" style={{ background: isDark ? '#0a0a0a' : '#f8f8f8', borderBottom: `1px solid ${isDark ? '#1a1a1a' : '#eee'}` }}>
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '5rem', alignItems: 'center' }}>
+          <span style={{ fontSize: '0.75rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '4px', color: '#D4AF37' }}>Strategic Ecosystem:</span>
           {companies.length > 0 ? (
             companies.map((company) => (
               <div key={company.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px', textTransform: 'uppercase' }}>
+                <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 900, fontSize: '1rem', letterSpacing: '3px', textTransform: 'uppercase', opacity: 0.8 }}>
                   {company.name}
                 </span>
                 {company.location && (
-                  <span style={{ fontSize: '0.7rem', color: 'var(--brand-gold)', opacity: 0.6 }}>({company.location})</span>
+                  <span style={{ fontSize: '0.7rem', color: '#D4AF37', opacity: 0.6 }}>({company.location})</span>
                 )}
               </div>
             ))
           ) : (
             <>
-              <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>FILIPINO HOMES</span>
-              <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>LEUTERIO REALTY</span>
-              <span style={{ color: 'var(--text-heading)', fontWeight: 900, fontSize: '0.95rem', letterSpacing: '2px' }}>RENT.PH</span>
+              <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 900, fontSize: '1rem', letterSpacing: '3px', opacity: 0.8 }}>FILIPINO HOMES</span>
+              <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 900, fontSize: '1rem', letterSpacing: '3px', opacity: 0.8 }}>LEUTERIO REALTY</span>
+              <span style={{ color: isDark ? '#ffffff' : '#000000', fontWeight: 900, fontSize: '1rem', letterSpacing: '3px', opacity: 0.8 }}>RENT.PH</span>
             </>
           )}
         </div>
       </section>
 
       {/* Brand Introduction */}
-      <section className="section bg-light" style={{ position: 'relative' }}>
+      <section className="section" style={{ position: 'relative', background: isDark ? '#000000' : '#ffffff', padding: '10rem 0' }}>
         {user && (
           <Link 
             href="/content" 
-            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: 'var(--brand-gold)', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             title="Edit Introduction Content"
           >
             <Pencil size={20} />
           </Link>
         )}
         <div className="container">
-          <div className="grid-2">
+          <div className="grid-2" style={{ gap: '8rem', alignItems: 'center' }}>
             <div className="reveal active">
-              <h2 className="section-title" style={{ marginBottom: '2rem' }}>
+              <span style={{ color: '#D4AF37', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '3px', fontSize: '0.9rem', marginBottom: '1.5rem', display: 'block' }}>The Visionary</span>
+              <h2 className="section-title" style={{ marginBottom: '2.5rem', fontSize: '3.5rem', color: isDark ? '#ffffff' : '#000000', lineHeight: 1.1 }}>
                 {(intro.title || "").split('<br />').map((text: string, i: number) => (
                   <React.Fragment key={i}>
                     {text}
@@ -186,31 +197,41 @@ const Home = () => {
                   </React.Fragment>
                 ))}
               </h2>
-              <p className="mb-2" style={{ fontSize: '1.1rem', fontWeight: 500 }}>{intro.subtitle}</p>
-              <p className="mb-4">
+              <p style={{ fontSize: '1.2rem', fontWeight: 600, color: '#D4AF37', marginBottom: '2rem' }}>{intro.subtitle}</p>
+              <p style={{ marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: 1.8, color: isDark ? '#cccccc' : '#444444' }}>
                 {intro.bio}
               </p>
-              <p className="mb-4" style={{ fontStyle: 'italic', paddingLeft: '1rem', color: 'var(--text-muted)' }}>
-                "{intro.quote}"
-              </p>
-              <Link href="/about" className="btn btn-outline">Read Full Biography</Link>
+              <div style={{ borderLeft: `3px solid #D4AF37`, paddingLeft: '2rem', margin: '3rem 0', fontStyle: 'italic' }}>
+                <p style={{ fontSize: '1.3rem', color: isDark ? '#ffffff' : '#000000', fontWeight: 500, lineHeight: 1.6 }}>
+                  "{intro.quote}"
+                </p>
+              </div>
+              <Link href="/about" className="btn" style={{ padding: '1rem 2.5rem', background: 'transparent', border: `2px solid ${isDark ? '#D4AF37' : '#000000'}`, color: isDark ? '#ffffff' : '#000000', fontWeight: 700, textDecoration: 'none' }}>Read Biography</Link>
             </div>
             <div className="reveal active">
-              <Image 
-                src={(typeof intro.image === 'string' && intro.image.startsWith('http')) ? intro.image : (isDark ? tonDarkImg : anthonyImg)} 
-                alt={intro.name || "Anthony Leuterio"} 
-                width={500}
-                height={625}
-                style={{ 
-                  width: '100%', 
-                  height: 'auto',
-                  aspectRatio: '4 / 5',
-                  objectFit: 'cover',
-                  borderRadius: 'var(--border-radius)', 
-                  boxShadow: 'var(--shadow-focus)',
-                  filter: 'grayscale(0.2) contrast(1.1)'
-                }} 
-              />
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: '20px', left: '20px', width: '100%', height: '100%', border: `2px solid #D4AF37`, zIndex: 1, borderRadius: '2px' }}></div>
+                <Image 
+                  key={`intro-image-${isDark}`}
+                  src={currentBodyImg} 
+                  alt={intro.name || "Anthony Leuterio"} 
+                  width={600}
+                  height={750}
+                  priority
+                  unoptimized={true}
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto',
+                    aspectRatio: '4 / 5',
+                    objectFit: 'cover',
+                    borderRadius: '2px', 
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                    position: 'relative',
+                    zIndex: 2,
+                    filter: isDark ? 'brightness(0.9) contrast(1.1)' : 'none',
+                  }} 
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -221,7 +242,7 @@ const Home = () => {
         {user && (
           <Link 
             href="/content" 
-            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: 'var(--brand-gold)', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
             title="Edit Ecosystem Content"
           >
             <Pencil size={20} />
@@ -229,8 +250,8 @@ const Home = () => {
         )}
         <div className="container">
           <div className="text-center mb-12">
-            <span className="roi-badge mb-4">Full-Spectrum Authority</span>
-            <h2 className="section-title">The Powered Ecosystem</h2>
+            <span className="roi-badge mb-4 shimmer-gold">Full-Spectrum Authority</span>
+            <h2 className="section-title">The <span style={{ color: '#D4AF37' }}>Powered Ecosystem</span></h2>
             <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.2rem', color: 'var(--text-main)' }}>
               Anthony Leuterio's coaching is fueled by the largest real estate infrastructure in the Philippines.
             </p>
@@ -265,7 +286,7 @@ const Home = () => {
       <section className="section">
         <div className="container">
           <div className="text-center mb-4">
-            <h2 className="section-title">The Masterclasses</h2>
+            <h2 className="section-title">The <span style={{ color: '#D4AF37' }}>Masterclasses</span></h2>
             <p style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.15rem', opacity: 0.7, lineHeight: 1.8 }}>Refined strategies built for those who refuse to settle for the status quo. Our programs are engineered to deliver measurable ROI and transformative leadership.</p>
           </div>
           <div className="grid-3">
@@ -296,7 +317,7 @@ const Home = () => {
         <div className="container">
           <div className="grid-2">
             <div>
-              <h2 className="section-title" style={{ marginBottom: '2rem' }}>Accelerate Your Growth</h2>
+              <h2 className="section-title" style={{ marginBottom: '2rem' }}>Accelerate Your <span style={{ color: '#D4AF37' }}>Growth</span></h2>
               <p className="mb-2">Our training programs are built on real-world experience and proven systems that drive results in today's competitive market.</p>
               <ul className="check-list" style={{ marginBottom: '2.5rem' }}>
                 <li>Online Leads Accelerator</li>
@@ -328,7 +349,7 @@ const Home = () => {
         {user && (
           <Link 
             href="/content" 
-            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: 'var(--brand-gold)', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
             title="Edit Event Content"
           >
             <Pencil size={20} />
@@ -338,7 +359,7 @@ const Home = () => {
           <div className="grid-2" style={{ alignItems: 'center', gap: '4rem' }}>
             <div className="reveal active">
               <span className="roi-badge mb-4">{event.badge}</span>
-              <h2 className="section-title" style={{ marginBottom: '1.5rem', color: 'var(--brand-gold)' }}>
+              <h2 className="section-title" style={{ marginBottom: '1.5rem', color: '#D4AF37' }}>
                 {(event.title || "").split('<br />').map((text: string, i: number) => (
                   <React.Fragment key={i}>
                     {text}
@@ -354,7 +375,7 @@ const Home = () => {
               </p>
               <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                 <Link href={event.cta_link} className="btn btn-primary">{event.cta_text}</Link>
-                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--brand-gold)', textTransform: 'uppercase', letterSpacing: '1px' }}>{event.availability}</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '1px' }}>{event.availability}</span>      
               </div>
             </div>
             <div className="reveal active" style={{ position: 'relative' }}>
@@ -400,7 +421,7 @@ const Home = () => {
                 <h4 className="org">Blog</h4>
                 <h3>The Future of Digital Real Estate</h3>
                 <p>How AI and online platforms are reshaping the archipelago's market.</p>
-                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read Article</Link>
+                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read Article</Link>   
               </div>
             </div>
             <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
@@ -409,7 +430,7 @@ const Home = () => {
                 <h4 className="org">Strategy</h4>
                 <h3>5 Mistakes in Digital Marketing</h3>
                 <p>Avoid these common errors that kill your conversion rates.</p>
-                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read More</Link>
+                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read More</Link>      
               </div>
             </div>
             <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
@@ -418,7 +439,7 @@ const Home = () => {
                 <h4 className="org">Tech</h4>
                 <h3>How AI is Changing Real Estate</h3>
                 <p>Explore the frontier of AI-driven property marketing.</p>
-                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read More</Link>
+                <Link href="/blog" style={{ color: 'var(--secondary-color)', fontWeight: 600, textDecoration: 'none', display: 'block', marginTop: '1.5rem' }}>Read More</Link>      
               </div>
             </div>
           </div>
