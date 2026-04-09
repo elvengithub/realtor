@@ -5,15 +5,15 @@ export async function middleware(request: NextRequest) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  const dashboardRoutes = ['/dashboard', '/properties', '/inquiries', '/content', '/settings']
-  const isDashboardRoute = dashboardRoutes.some((route) =>
+  const protectedRoutes = ['/api/admin']
+  const isProtectedRoute = protectedRoutes.some((route) =>
     request.nextUrl.pathname.startsWith(route),
   )
 
   // Avoid crashing when env vars are not set (e.g. first deploy before Vercel env is configured).
   // Public routes still render; dashboard routes redirect to login (auth will not work until env is set).
   if (!supabaseUrl || !supabaseAnonKey) {
-    if (isDashboardRoute) {
+    if (isProtectedRoute) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
     return NextResponse.next()
@@ -73,14 +73,14 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protect dashboard routes
-  if (!user && isDashboardRoute) {
+  // Protect routes
+  if (!user && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 
   // Redirect authenticated users away from /login only (marketing home stays public)
   if (user && request.nextUrl.pathname.startsWith('/login')) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
   return response

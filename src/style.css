@@ -67,6 +67,7 @@
 /* -------------------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
+  font-size: var(--accessibility-font-size, 100%);
 }
 
 body {
@@ -518,14 +519,14 @@ a {
   /* Accessibility widget */
   .accessibility-widget {
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 24px;
+    right: 24px;
     z-index: 1100;
   }
 
   .accessibility-btn {
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     border: 2px solid var(--brand-gold);
     background: var(--bg-base);
@@ -539,10 +540,10 @@ a {
 
   .accessibility-menu {
     position: absolute;
-    bottom: 4rem;
+    bottom: 64px;
     right: 0;
     width: min(300px, 92vw);
-    padding: 1.25rem;
+    padding: 20px;
     background: var(--bg-base);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -550,16 +551,16 @@ a {
   }
 
   .accessibility-menu h4 {
-    margin: 0 0 1rem;
-    font-size: 1rem;
+    margin: 0 0 16px;
+    font-size: 16px;
   }
 
   .acc-option {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+    margin-bottom: 16px;
+    font-size: 14.4px;
   }
 
   .acc-toggle {
@@ -594,12 +595,12 @@ a {
 
   .acc-controls {
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
   }
 
   .acc-ctrl-btn {
-    width: 2rem;
-    height: 2rem;
+    width: 32px;
+    height: 32px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
     background: var(--bg-section);
@@ -611,9 +612,9 @@ a {
 
   .acc-reset {
     width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.65rem;
-    font-size: 0.7rem;
+    margin-top: 8px;
+    padding: 10px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.08em;
     border: 1px solid var(--border-color);
@@ -621,6 +622,16 @@ a {
     background: transparent;
     cursor: pointer;
     color: var(--text-main);
+  }
+
+  .accessibility-readable, .accessibility-readable *:not(i):not(svg):not(path) {
+    font-family: 'Inter', system-ui, sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+  }
+
+  .accessibility-colorblind {
+    filter: grayscale(100%) contrast(1.2) !important;
   }
 
   .script-text {

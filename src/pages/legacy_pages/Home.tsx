@@ -7,6 +7,7 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { useAuth } from '@/src/context/AuthContext';
 import { supabase } from '@/src/lib/supabase';
 import { fetchTopCompanies } from '@/src/lib/cms';
+import InlineEditorModal from '@/src/components/admin/InlineEditorModal';
 
 // Explicit static paths for public/img/ assets
 const PATH_LIGHT_BODY = '/img/ton1.jpg';
@@ -18,6 +19,15 @@ const Home = () => {
   const { user } = useAuth();
   const [content, setContent] = useState<any>(null);
   const [companies, setCompanies] = useState<any[]>([]);
+  const [activeEditor, setActiveEditor] = useState<string | null>(null);
+
+  const handleSaveSuccess = (sectionId: string, newData: any) => {
+    setContent((prev: any) => ({
+      ...prev,
+      [sectionId]: newData
+    }));
+    setActiveEditor(null);
+  };
 
   useEffect(() => {
     async function fetchPageData() {
@@ -107,13 +117,13 @@ const Home = () => {
         }}
       >
         {user && (
-          <Link 
-            href="/content" 
-            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+          <button 
+            onClick={() => setActiveEditor('hero')}
+            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer', border: 'none' }}
             title="Edit Hero Content"
           >
             <Pencil size={20} />
-          </Link>
+          </button>
         )}
         <div style={{ maxWidth: '600px', textAlign: 'left', position: 'relative', zIndex: 10 }}>
           <p style={{ color: '#D4AF37', fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '0.5rem' }}>
@@ -177,13 +187,13 @@ const Home = () => {
       {/* Brand Introduction */}
       <section className="section" style={{ position: 'relative', background: isDark ? '#000000' : '#ffffff', padding: '10rem 0' }}>
         {user && (
-          <Link 
-            href="/content" 
-            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          <button 
+            onClick={() => setActiveEditor('intro')}
+            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'black', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: 'none' }}
             title="Edit Introduction Content"
           >
             <Pencil size={20} />
-          </Link>
+          </button>
         )}
         <div className="container">
           <div className="grid-2" style={{ gap: '8rem', alignItems: 'center' }}>
@@ -240,13 +250,13 @@ const Home = () => {
       {/* Ecosystem Section */}
       <section className="section bg-light" style={{ position: 'relative' }}>
         {user && (
-          <Link 
-            href="/content" 
-            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+          <button 
+            onClick={() => setActiveEditor('ecosystem')}
+            style={{ position: 'absolute', top: '100px', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer', border: 'none' }}
             title="Edit Ecosystem Content"
           >
             <Pencil size={20} />
-          </Link>
+          </button>
         )}
         <div className="container">
           <div className="text-center mb-12">
@@ -347,13 +357,13 @@ const Home = () => {
       {/* Upcoming Event */}
       <section className="section" style={{ backgroundColor: 'var(--bg-base)', position: 'relative' }}>
         {user && (
-          <Link 
-            href="/content" 
-            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
+          <button 
+            onClick={() => setActiveEditor('event')}
+            style={{ position: 'absolute', top: '2rem', right: '2rem', zIndex: 100, background: '#D4AF37', color: 'white', padding: '0.5rem', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)', cursor: 'pointer', border: 'none' }}
             title="Edit Event Content"
           >
             <Pencil size={20} />
-          </Link>
+          </button>
         )}
         <div className="container">
           <div className="grid-2" style={{ alignItems: 'center', gap: '4rem' }}>
@@ -518,6 +528,16 @@ const Home = () => {
           <a href="mailto:consultation@tonleuterio.com" className="btn btn-primary" style={{ padding: '1.8rem 5rem', fontSize: '1.2rem' }}>Inquire for Consultation</a>
         </div>
       </section>
+
+      {/* Admin Inline Editor Modal */}
+      {activeEditor && (
+        <InlineEditorModal 
+          id={activeEditor} 
+          initialData={content?.[activeEditor] || {}} 
+          onClose={() => setActiveEditor(null)} 
+          onSaveSuccess={(newData) => handleSaveSuccess(activeEditor, newData)} 
+        />
+      )}
     </div>
   );
 };

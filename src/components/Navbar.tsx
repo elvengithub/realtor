@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Sun, Moon, Menu, X, LogOut, Settings } from 'lucide-react';
+import { Sun, Moon, Menu, X, LogOut } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../lib/supabase';
@@ -36,14 +36,13 @@ const Navbar = () => {
   const mainLinks = [
     { name: 'Home', path: '/' },
     { name: 'Coaching', path: '/coaching' },
+    { name: 'Properties', path: '/properties' },
     { name: 'Content', path: '/blog' },
     { name: 'Testimonials', path: '/coaching/testimonials' },
     { name: 'About', path: '/about' },
   ];
 
-  const adminLinks = user ? [
-    { name: 'Dashboard', path: '/dashboard' },
-  ] : [];
+  const adminLinks: any[] = []; // Removed dashboard link
 
   const navLinks = [...mainLinks, ...adminLinks];
 
@@ -83,20 +82,7 @@ const Navbar = () => {
                   </div>
                   <span className="hide-mobile" style={{ fontWeight: 600 }}>{(user.email || "").split('@')[0]}</span>
                 </div>
-                <Link 
-                  href="/settings"
-                  className="theme-toggle"
-                  style={{ 
-                    background: 'var(--brand-gold)', 
-                    color: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                  title="Admin Settings"
-                >
-                  <Settings size={20} />
-                </Link>
+                  {/* Removed settings link for inline editing mode */}
                 <button 
                   onClick={handleLogout}
                   className="btn-secondary"

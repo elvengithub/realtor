@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Building2, MessageSquare } from "lucide-react";
+import { LayoutDashboard, Building2, MessageSquare, FileText, Settings } from "lucide-react";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Site Content", href: "/content", icon: FileText },
   { name: "Properties", href: "/properties", icon: Building2 },
   { name: "Inquiries", href: "/inquiries", icon: MessageSquare },
+  { name: "Landing Settings", href: "/settings", icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -24,8 +26,9 @@ export default function Sidebar() {
             <li key={item.name}>
               <Link
                 href={item.href}
+                prefetch
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                  pathname === item.href
+                  pathname === item.href || pathname?.startsWith(item.href + "/")
                     ? "bg-slate-800 text-white shadow-sm"
                     : "text-slate-400 hover:bg-slate-800 hover:text-white"
                 }`}

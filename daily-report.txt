@@ -1,0 +1,39 @@
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+ > Daily report — Realtor / coaching platform (Anthony workspace)
+
+   During today's review and implementation work on the public site and admin tools,
+   the following was addressed:
+
+   • Public home page previously showed an indefinite loading spinner when Supabase CMS
+     requests were slow or failed. The page now renders default marketing content
+     immediately and loads CMS data in the background; middleware no longer redirects
+     logged-in users away from the marketing home route.
+
+   • Global styles were largely missing (truncated stylesheet), which broke layout,
+     typography, buttons, and navigation appearance. A full design-token and component
+     layer was restored in src/style.css, with light/dark theme variables, and the
+     public layout now includes Footer and Accessibility widget on marketing routes.
+
+   • Site Settings (landing content editor) refetched every sidebar section on each
+     click, causing long waits and full-page spinners. All sections are now prefetched
+     in parallel on load; switching tabs is instant. Save feedback uses short
+     auto-dismissing toasts instead of blocking alerts.
+
+   • Admin sidebar listed only Dashboard, Properties, and Inquiries while the header
+     linked to Content and Settings. The sidebar now includes Site Content and Landing
+     Settings with prefetch and correct active states (including nested routes such as
+     /properties/new).
+
+   • Site Content admin page replaced modal alerts with the same auto-dismiss toast
+     pattern for saves, uploads, and load errors; fetch handling is wrapped in
+     try/finally.
+
+   • Build verification: next build completes successfully on current imports
+     (legacy_pages paths). Older build logs that reference @/src/pages/... without
+     legacy_pages are obsolete and should be disregarded after pull.
+
+   Remaining scope: the separate “Developers dashboard” product described in external
+   QA notes is not part of this repository; issues specific to that app require the
+   corresponding codebase.
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
